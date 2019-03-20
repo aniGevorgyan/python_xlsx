@@ -21,13 +21,13 @@ def writeData(data, workbook, worksheet):
   # Write data
   for i in range(len(data)):
     lineData = data[i]
+    # Styles of columns
+    if (lineData[2] == "Software Developer" and getYearFromDate(lineData[3]) > 1985):
+      style = workbook.add_format(style2)
+    else:
+      style = workbook.add_format(style1)
     for j in range(len(lineData)):
-      # Styles of columns
-      if (lineData[2] == "Software Developer" and getYearFromDate(lineData[3]) > 1985):
-        style = workbook.add_format(style2)
-      else:
-        style = workbook.add_format(style1)
-      worksheet.write(i+1, j, lineData[j], style)
+      worksheet.write(i + 1, j, lineData[j], style)
   return
 
 
