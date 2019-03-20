@@ -17,23 +17,17 @@ def readData(filename):
 
 def writeData(data, workbook, worksheet):
   writeTitles(workbook, worksheet)
-  row = 1
-  col = 0
 
   # Write data
-  for firstName, lastName, prof, dob, email, address in data:
-    # Styles of columns
-    if (prof == "Software Developer" and getYearFromDate(dob) > 1985):
-      style = workbook.add_format(style2)
-    else:
-      style = workbook.add_format(style1)
-    worksheet.write(row, col, firstName, style)
-    worksheet.write(row, col + 1, lastName, style)
-    worksheet.write(row, col + 2, prof, style)
-    worksheet.write(row, col + 3, dob, style)
-    worksheet.write(row, col + 4, email, style)
-    worksheet.write(row, col + 5, address, style)
-    row += 1
+  for i in range(len(data)):
+    lineData = data[i]
+    for j in range(len(lineData)):
+      # Styles of columns
+      if (lineData[2] == "Software Developer" and getYearFromDate(lineData[3]) > 1985):
+        style = workbook.add_format(style2)
+      else:
+        style = workbook.add_format(style1)
+      worksheet.write(i+1, j, lineData[j], style)
   return
 
 
